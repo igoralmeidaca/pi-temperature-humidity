@@ -1,34 +1,26 @@
+import RPi.GPIO as GPIO
+import dht11
 import time
-import board
-import adafruit_dht
+import datetime
 
-# Initial the dht device, with data pin connected to:
-dhtDevice = adafruit_dht.DHT11(board.D5)
+# initialize GPIO
+GPIO.setwarnings(True)
+GPIO.setmode(GPIO.BCM)
 
-# you can pass DHT22 use_pulseio=False if you wouldn't like to use pulseio.
-# This may be necessary on a Linux single board computer like the Raspberry Pi,
-# but it will not work in CircuitPython.
-# dhtDevice = adafruit_dht.DHT22(board.D18, use_pulseio=False)
+# read data using pin 14
+instance = dht11.DHT11(pin=5)
 
-while True:
-    try:
-        # Print the values to the serial port
-        temperature_c = dhtDevice.temperature
-        temperature_f = temperature_c * (9 / 5) + 32
-        humidity = dhtDevice.humidity
-        print(
-            "Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(
-                temperature_f, temperature_c, humidity
-            )
-        )
+try:
+        while True:
+            result = instance.read()
+            if result.is_valid():
+                print("Last valid input: " + str(datetime.datetime.now()))
 
-    except RuntimeError as error:
-        # Errors happen fairly often, DHT's are hard to read, just keep going
-        print(error.args[0])
-        time.sleep(2.0)
-        continue
-    except Exception as error:
-        dhtDevice.exit()
-        raise error
+                print("Temperature: %-3.1f C" % result.temperature)
+                print("Humidity: %-3.1f %%" % result.humidity)
 
-    time.sleep(2.0)
+            time.sleep(1)
+
+except KeyboardInterrupt:
+    print("Cleanup")
+    GPIO.cleanup()
