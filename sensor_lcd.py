@@ -32,8 +32,8 @@ try:
         while True:
             result = instance.read()
             if result.is_valid():
-                temperature = "T: %-3.1f C" % result.temperature
-                humidity = "| H: %-3.1f %%" % result.humidity
+                temperature = "T:%-3.1fC" % result.temperature
+                humidity = "  H:%-3.1f%%" % result.humidity
                 lcd.message = str(datetime.datetime.now()) + "\n" + temperature + humidity
 
                 #lcd.message = "Adafruit CharLCD\nCP Raspberry Pi"                
