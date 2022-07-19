@@ -12,12 +12,6 @@ pMode_cmd = [5]
 
 # Set level
 ledBarLevel_cmd = [52]
- 
-pinMode(ledbar,"OUTPUT")
-time.sleep(1)
-i = 0
-
-ledBar_setLevel(ledbar, 1)
 
 # Grove LED Bar - set level
 # level: (0-10)
@@ -34,3 +28,10 @@ def pinMode(pin, mode):
 		grovepi.write_i2c_block(pMode_cmd + [pin, 0, unused])
 	grovepi.read_i2c_block(no_bytes = 1)
 	return 1
+ 
+pinMode(ledbar,"OUTPUT")
+time.sleep(1)
+i = 0
+
+ledBar_setLevel(ledbar, 1)
+
