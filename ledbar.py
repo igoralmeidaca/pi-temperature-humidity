@@ -17,15 +17,6 @@ i = 0
 # grovepi.ledBar_toggleLed(pin,led)
 # grovepi.ledBar_setBits(pin,state)
 # grovepi.ledBar_getBits(pin)
- 
-while True:
-    try:
-        grovepi.ledBar_setLevel(ledbar, 8)
-        time.sleep(5)
-        grovepi.ledBar_setLevel(ledbar, 1)
-        time.sleep(5)     
-    except KeyboardInterrupt:
-        grovepi.ledBar_setBits(ledbar, 0)
-        break
-    except IOError:
-        print("Error")
+
+grovepi.ledBar_setLevel(ledbar, 1)
+
