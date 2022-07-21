@@ -36,10 +36,9 @@ try:
                 humidity = "  H:%-3.1f%%" % result.humidity
                 lcd.message = str(datetime.datetime.now()) + "\n" + temperature + humidity
 
-                #lcd.message = "Adafruit CharLCD\nCP Raspberry Pi"                
-                #print("Last valid input: " + str(datetime.datetime.now()))
-                #print(temperature)
-                #print(humidity)
+                print("Last valid input: " + str(datetime.datetime.now()))
+                print("Temperature: %-3.1f C" % result.temperature)
+                print("Humidity: %-3.1f %%" % result.humidity)
 
             time.sleep(10)
 
