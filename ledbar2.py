@@ -5,7 +5,7 @@ from upm import pyupm_my9221 as upmMy9221
 def main():
     # Instantiate a MY9221, we use D8 for the data, and D9 for the
     # data clock.  This was tested with a Grove LED bar.
-    myLEDBar = upmMy9221.GroveLEDBar(8, 9)
+    myLEDBar = upmMy9221.GroveLEDBar(5, 6)
 
     # Exit handlers
     def SIGINTHandler(signum, frame):
