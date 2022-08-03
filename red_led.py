@@ -18,6 +18,7 @@ Grove = GroveLed
 def main():
     import sys
     import time
+    import datetime
     import psutil
  
     if len(sys.argv) < 2:
@@ -27,7 +28,11 @@ def main():
     led = GroveLed(int(sys.argv[1]))
  
     while True:
-        if psutil.cpu_percent() >= 80:
+        cpuTemperature = psutil.cpu_percent()
+        print("Last valid input: " + str(datetime.datetime.now()))
+        print("CPU temperature: " + str(cpuTemperature))
+
+        if cpuTemperature >= 80:
             led.on()
 
         time.sleep(10)
