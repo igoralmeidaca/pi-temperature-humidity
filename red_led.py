@@ -18,7 +18,7 @@ Grove = GroveLed
 def main():
     import sys
     import time
-    import datetime
+    from datetime import datetime, timedelta
     import psutil
  
     if len(sys.argv) < 2:
@@ -27,16 +27,25 @@ def main():
  
     led = GroveLed(int(sys.argv[1]))
  
+    var: lastTimeHighCpuUsage
+    var: lastHighCpuUsage
     while True:
         cpuUsage = psutil.cpu_percent()
-        print("Last valid input: " + str(datetime.datetime.now()))
+        print("Last valid read: " + str(datetime.now()))
         print("CPU usage: " + str(cpuUsage))
 
         if cpuUsage >= 80:
+            lastTimeHighCpuUsage = datetime.now()
+            lastHighCpuUsage = cpuUsage
             led.on()
 
-        time.sleep(10)
-        led.off()     
+        if lastTimeHighCpuUsage + timedelta(minutes=30) < datetime.now():
+            led.off()  
+
+        print("Last valid max: " + str(lastTimeHighCpuUsage))
+        print("Max CPU usage: " + str(lastHighCpuUsage))
+
+        time.sleep(10)           
 
  
 if __name__ == '__main__':
