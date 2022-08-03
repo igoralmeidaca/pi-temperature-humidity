@@ -31,7 +31,7 @@ def main():
     lastHighCpuUsage = psutil.cpu_percent()
     while True:
         cpuUsage = psutil.cpu_percent()
-        print("\n Last valid read: " + str(datetime.now()))
+        print("\nLast valid read: " + str(datetime.now()))
         print("CPU usage: " + str(cpuUsage))
 
         if cpuUsage >= 80:
