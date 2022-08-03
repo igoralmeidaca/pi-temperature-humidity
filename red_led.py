@@ -28,7 +28,7 @@ def main():
     led = GroveLed(int(sys.argv[1]))
  
     lastTimeHighCpuUsage = datetime.now()
-    lastHighCpuUsage
+    lastHighCpuUsage = psutil.cpu_percent()
     while True:
         cpuUsage = psutil.cpu_percent()
         print("\n Last valid read: " + str(datetime.now()))
