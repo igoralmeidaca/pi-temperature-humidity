@@ -31,7 +31,7 @@ def main():
     var: lastHighCpuUsage
     while True:
         cpuUsage = psutil.cpu_percent()
-        print("Last valid read: " + str(datetime.now()))
+        print("\n Last valid read: " + str(datetime.now()))
         print("CPU usage: " + str(cpuUsage))
 
         if cpuUsage >= 80:
@@ -43,7 +43,7 @@ def main():
             led.off()  
 
         print("Last valid max: " + str(lastTimeHighCpuUsage))
-        print("Max CPU usage: " + str(lastHighCpuUsage))
+        print("Max CPU usage: " + str(lastHighCpuUsage))        
 
         time.sleep(10)           
 
